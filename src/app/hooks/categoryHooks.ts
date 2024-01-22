@@ -1,16 +1,10 @@
-import { useState } from "react"
+import { useFetch } from "./fetch"
 
-export function useCategoryService(onPostEnd: ()=>void) {
-
-    const [loading, setLoading] = useState(false)
-    const [result, setResult] = useState()
+export function useCategoryService(onPostEnd: () => void) {
+    const { post, result, loading } = useFetch(onPostEnd)
 
     const sendCategoryData = (body: FormData): void => {
-        setLoading(true)
-        fetch('api/category', { method: "POST", body: body })
-        .then(res=>res.json())
-        .then(data=>{setResult(data), onPostEnd()})
-        .finally(()=>setLoading(false))
+        post('api/category', body)
     }
-    return { sendCategoryData, result, loading}
+    return { sendCategoryData, result, loading }
 }
