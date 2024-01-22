@@ -1,44 +1,11 @@
+import { getCategoryTasks } from "@/app/api/repositories/taskRepository";
 import CreateTaskButton from "@/app/components/CreateTaskButton";
 import TaskList from "@/app/components/TaskList";
 import Link from "next/link";
 
-async function getCategoryTasks() {
-    return {
-        category_name: 'Category 1',
-        tasks_count: 20,
-        icon: '/icons/all.png',
-        tasks: [
-            {
-                id: 1,
-                title: 'Comer',
-                time: '16:00',
-                status: 'IN_PROGRESS'
-            },
-            {
-                id: 1,
-                title: 'Comer',
-                time: '16:00',
-                status: 'IN_PROGRESS'
-            },
-            {
-                id: 1,
-                title: 'Comer',
-                time: '16:00',
-                status: 'IN_PROGRESS'
-            },
-            {
-                id: 1,
-                title: 'Comer',
-                time: '16:00',
-                status: 'DONE'
-            },
-        ]
-    }
-}
-
 
 export default async function CategoryPage({ params }: any) {
-    const data = await getCategoryTasks()
+    const data = await getCategoryTasks(parseInt(params.categoryId))
     return <div className="flex-row h-screen bg-main-1">
         <header className="flex justify-between p-5">
             <Link href='/'>

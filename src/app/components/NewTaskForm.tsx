@@ -20,7 +20,6 @@ export default function NewTaskForm({ categories }: { categories: Category[] }) 
             time: dateInputRef?.current?.value,
             categoryId: categorySelectRef?.current?.value
         }
-        debugger
         post('api/task', taskPayload)
 
     }

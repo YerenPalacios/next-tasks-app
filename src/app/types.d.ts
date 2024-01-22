@@ -9,5 +9,6 @@ interface Task {
     id: number,
     title: string,
     time: string,
-    status:  string
+    status:  string,
+    tasks: Task[]
 }
