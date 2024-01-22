@@ -1,45 +1,5 @@
+import { getCategories } from "./api/repositories/categoriesRepository";
 import CategoryBlock from "./components/CategoryBlock";
-
-export async function getCategories() {
-  return [
-    {
-      icon: '/icons/all.png',
-      id:1,
-      title: 'Category 1',
-      tasks_count: 20,
-    },
-    {
-      icon: '/icons/briefcase.png',
-      id:1,
-      title: 'Category 2',
-      tasks_count: 20,
-    },
-    {
-      icon: '/icons/headphones.png',
-      id:1,
-      title: 'Category 3',
-      tasks_count: 20,
-    },
-    {
-      icon: '/icons/plane.png',
-      id:1,
-      title: 'Category 1',
-      tasks_count: 20,
-    },
-    {
-      icon: '/icons/all.png',
-      id:1,
-      title: 'Category 2',
-      tasks_count: 20,
-    },
-    {
-      icon: '/icons/all.png',
-      id:1,
-      title: 'Category 3',
-      tasks_count: 20,
-    },
-  ]
-}
 
 
 export default async function Home() {
