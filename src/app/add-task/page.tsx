@@ -1,5 +1,4 @@
 import { getCategories } from "../api/repositories/categoriesRepository"
-import NewTaskHeader from "../components/NewTaskHeader"
 import NewTaskForm from "../components/NewTaskForm"
 
 export default async function AddTask() {

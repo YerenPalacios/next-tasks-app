@@ -19,3 +19,16 @@ export async function getCategories(): Promise<Category[]> {
     ))
 
 }
+
+export async function createCategory(category: {icon: string, path:string}): Promise<Category> {
+    const db_category = await prisma.category.create({
+        data: category
+    })
+    return {
+        id: db_category.id,
+        icon: db_category.icon,
+        title: db_category.title,
+        tasks_count: 0
+    }
+
+}

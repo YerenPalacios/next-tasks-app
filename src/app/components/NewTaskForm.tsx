@@ -1,13 +1,12 @@
 "use client"
 import moment from "moment"
-import { useRouter } from "next/navigation"
 import { useState } from "react"
-import NewTaskHeader from "./NewTaskHeader"
+import NewTaskHeader from "./FormHeader"
 
 export default function NewTaskForm({ categories }: { categories: Category[] }) {
     const [date, setDate] = useState()
     return <div>
-        <NewTaskHeader />
+        <NewTaskHeader title="New task"/>
         <div className="p-5">
             <p className="text-slate-400">What are you planning?</p>
             <textarea className="caret-main-1 h-[100px] md:h-[150px] text-slate-600 caret w-full border-slate-200 border-b-2 resize-none outline-none" name="" id=""></textarea>
