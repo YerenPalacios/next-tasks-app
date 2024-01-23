@@ -1,4 +1,3 @@
-import { getCategories } from "../api/repositories/categoriesRepository"
 import NewCategoryForm from "../components/NewCategoryForm"
 
 export default async function AddCategory() {

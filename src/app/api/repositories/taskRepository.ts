@@ -40,3 +40,18 @@ export async function getCategoryTasks(categoryId: number): Promise<Category | u
         }
 
 }
+
+export async function getAllTasks(): Promise<{ count: number, tasks: Task[] } | undefined> {
+    const tasks = await prisma?.task.findMany()
+    const count = await prisma?.task.count()
+    if (tasks)
+        return {
+            count,
+            tasks: tasks.map(db_task => ({
+                id: db_task.id,
+                title: db_task.title,
+                time: db_task.time.toDateString(),
+                status: db_task.status
+            }))
+        }
+}

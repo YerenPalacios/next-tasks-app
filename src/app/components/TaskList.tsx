@@ -9,7 +9,8 @@ function TaskBlock({ title, time, status }: Task) {
         <div>
             <h3 className={`font-bold text-lg ${currentStatus === 'DONE' ? 'line-through text-main-1' : 'text-slate-600'}`}>{title}</h3>
             {/* fix hours */}
-            <p className="text-sm text-slate-400">{moment(time).format('MMMM Do YYYY, h:mm:ss a')}</p>
+            {/* <p className="text-sm text-slate-400">{moment(time).format('MMMM Do YYYY, h:mm:ss a')}</p> */}
+            <p className="text-sm text-slate-400">{moment(time).fromNow()}</p>
         </div>
         <input onChange={(e) => setCurrentStatus(e.target.checked ? 'DONE' : 'IN_PROCESS')} type="checkbox" name="" id="" />
     </div>

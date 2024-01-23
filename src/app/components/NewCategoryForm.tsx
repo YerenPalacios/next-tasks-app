@@ -53,7 +53,7 @@ export default function NewCategoryForm() {
                 <div className="w-4"><Image width={200} height={200} src="/icons/image-gallery.png" alt="" /></div>
                 <input onChange={handleFileChange} className="hidden" type="file" id="file" accept=".png,.jpg" />
                 <label className="text-slate-700 block" htmlFor="file">Upload your file</label>
-                {filePreview && <div className="w-10"><Image height={200} src={filePreview} alt="" /></div>}
+                {filePreview && <div className="w-10"><Image width={200} height={200} src={filePreview} alt="" /></div>}
             </div>
         </div>
 
