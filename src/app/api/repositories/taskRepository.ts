@@ -1,5 +1,7 @@
+import prisma from "@/app/db";
+
 export async function createTask(task: any): Promise<Task> {
-    const db_task = await prisma.task.create({
+    const db_task = await prisma?.task.create({
         data: task
     })
     return {
@@ -11,8 +13,8 @@ export async function createTask(task: any): Promise<Task> {
 
 }
 
-export async function getCategoryTasks(categoryId: number): Promise<Category[]> {
-    const category = await prisma.category.findFirst({
+export async function getCategoryTasks(categoryId: number): Promise<Category | undefined> {
+    const category = await prisma?.category.findFirst({
         where: {
             id: categoryId
         },

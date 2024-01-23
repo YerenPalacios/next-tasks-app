@@ -1,6 +1,7 @@
 import { getCategoryTasks } from "@/app/api/repositories/taskRepository";
 import CreateTaskButton from "@/app/components/CreateTaskButton";
 import TaskList from "@/app/components/TaskList";
+import Image from "next/image";
 import Link from "next/link";
 
 
@@ -17,11 +18,12 @@ export default async function CategoryPage({ params }: any) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
             </svg>
         </header>
-        <div className="bg-white rounded-full p-3 my-4 mx-7 w-12"><img src={data.icon} alt="..." /></div>
-        <h1 className="capitalize font-bold text-xl px-7 text-slate-100">{data.category_name}</h1>
-        <p className="px-7 text-sm text-slate-200">{data.tasks_count} Tasks</p>
-        {/* add task list */}
-        <TaskList tasks={data.tasks} />
+        <div className="bg-white rounded-full p-3 my-4 mx-7 w-12"><Image width={200} height={200} src={data?.icon || ''} alt="..." /></div>
+        <h1 className="capitalize font-bold text-xl px-7 text-slate-100">{data?.title}</h1>
+        <p className="px-7 text-sm text-slate-200">{data?.tasks_count} Tasks</p>
+        {/* add task list and validate if there is no data */}
+        {data && data.tasks && <TaskList tasks={data.tasks} />}
+
 
         <CreateTaskButton />
     </div>

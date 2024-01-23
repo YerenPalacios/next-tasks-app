@@ -20,7 +20,7 @@ export async function getCategories(): Promise<Category[]> {
 
 }
 
-export async function createCategory(category: {icon: string, path:string}): Promise<Category> {
+export async function createCategory(category: any): Promise<Category> {
     const db_category = await prisma.category.create({
         data: category
     })

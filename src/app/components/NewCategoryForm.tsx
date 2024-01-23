@@ -4,6 +4,7 @@ import FormHeader from "./FormHeader"
 import { useCategoryService } from "../hooks/categoryHooks"
 import Loading from "./loading"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 export default function NewCategoryForm() {
 
@@ -12,7 +13,7 @@ export default function NewCategoryForm() {
     const name = useRef<HTMLInputElement | null>(null)
     const router = useRouter()
 
-    const onCreateEnds = ()=>{
+    const onCreateEnds = () => {
         router.push("/")
     }
 
@@ -49,10 +50,10 @@ export default function NewCategoryForm() {
             <p className="text-slate-400">Add a category name</p>
             <input ref={name} className="caret-main-1 text-slate-600 caret w-full border-slate-200 border-b-2 resize-none outline-none" />
             <div className="flex gap-3 items-center my-4">
-                <div className="w-4"><img src="/icons/image-gallery.png" alt="" /></div>
+                <div className="w-4"><Image width={200} height={200} src="/icons/image-gallery.png" alt="" /></div>
                 <input onChange={handleFileChange} className="hidden" type="file" id="file" accept=".png,.jpg" />
                 <label className="text-slate-700 block" htmlFor="file">Upload your file</label>
-                {filePreview && <div className="w-10"><img src={filePreview} alt="" /></div>}
+                {filePreview && <div className="w-10"><Image height={200} src={filePreview} alt="" /></div>}
             </div>
         </div>
 
