@@ -7,7 +7,7 @@ export async function createTask(task: any): Promise<Task> {
     return {
         id: db_task.id,
         title: db_task.title,
-        time: db_task.time.toDateString(),
+        time: db_task.time.toISOString(),
         status: db_task.status
     }
 
@@ -32,7 +32,7 @@ export async function getCategoryTasks(categoryId: number): Promise<Category | u
             tasks: category.tasks.map(db_task => ({
                 id: db_task.id,
                 title: db_task.title,
-                time: db_task.time.toDateString(),
+                time: db_task.time.toISOString(),
                 status: db_task.status
             })),
             title: category.title,
@@ -50,7 +50,7 @@ export async function getAllTasks(): Promise<{ count: number, tasks: Task[] } | 
             tasks: tasks.map(db_task => ({
                 id: db_task.id,
                 title: db_task.title,
-                time: db_task.time.toDateString(),
+                time: db_task.time.toISOString(),
                 status: db_task.status
             }))
         }
