@@ -76,6 +76,4 @@ export async function updateTask(id: number, status: string): Promise<Task> {
         if (error.code === 'P2025') throw "Task not found"
         throw error
     }
-
-
 }

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import taskService from "../services/taskService";
-
-const EMPTY_VALUES = [undefined, null, '']
+import { EMPTY_VALUES } from "@/app/constants";
 
 export async function POST(req: NextRequest) {
     const data = await req.json()

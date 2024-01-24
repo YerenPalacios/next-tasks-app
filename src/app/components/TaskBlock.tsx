@@ -26,7 +26,7 @@ export default function TaskBlock({ id, title, time, status }: Task) {
             <h3 className={`font-bold text-lg ${currentStatus === 'DONE' ? 'line-through text-main-1' : 'text-slate-600'}`}>{title}</h3>
             {/* <p className="text-sm text-slate-400">{moment(time).format('MMMM Do YYYY, h:mm:ss a')}</p> */}
             <p
-                className={`text-sm text-slate-400 ${((new Date(time) < new Date()) && status === 'IN_PROCESS') && 'text-red-400'}`}
+                className={`text-sm ${((new Date(time) < new Date()) && status == 'IN_PROCESS') ? 'text-red-400' : 'text-slate-400'}`}
             >{moment(new Date(time)).fromNow()}</p>
         </div>
         <input checked={currentStatus === 'DONE'} onChange={handleChangeStatus} type="checkbox" name="" id="" />

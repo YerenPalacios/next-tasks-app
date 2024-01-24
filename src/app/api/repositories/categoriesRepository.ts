@@ -32,3 +32,31 @@ export async function createCategory(category: any): Promise<Category> {
     }
 
 }
+
+export async function deleteCategory(id: number): Promise<any> {
+
+    try {
+        const category = await prisma?.category.findFirst({
+            where: {
+                id: id
+            }
+        })
+        if (category) {
+            await prisma.task.deleteMany({
+                where: {
+                    categoryId: { in: [id] }
+                }
+            })
+            await prisma?.category.delete({
+                where: {
+                    id: id
+                }
+            })
+            return category
+        }
+
+    } catch (error: any) {
+        if (error.code === 'P2025') throw "Task not found"
+        throw error
+    }
+}

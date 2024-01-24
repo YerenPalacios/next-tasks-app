@@ -1,6 +1,6 @@
-import { existsSync, mkdirSync, writeFile } from 'fs';
+import { existsSync, mkdirSync, unlink, writeFile } from 'fs';
 import { v4 as uuidv4 } from 'uuid';
-import { createCategory } from '../repositories/categoriesRepository';
+import { createCategory, deleteCategory } from '../repositories/categoriesRepository';
 
 const FILES_FOLDER = "public"
 const DB_FOLDER = "uploads"
@@ -34,6 +34,15 @@ class CategoryService {
     async createCategory(title: string, file: File) {
         const dbpath = await this.saveFile(file)
         return createCategory({ title, icon: dbpath })
+    }
+    async deleteCategory(id: number) {
+        const category = await deleteCategory(id)
+        const path = `${FILES_FOLDER}${category.icon}`
+        unlink(path, (error: any)=>{
+            if (error){
+                console.error(path + ' file not removed.')
+            }
+        })
     }
 }
 export default new CategoryService()
