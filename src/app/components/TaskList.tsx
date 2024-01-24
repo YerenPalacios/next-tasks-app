@@ -1,23 +1,4 @@
-'use client'
-
-import moment from "moment"
-import { useState } from "react"
-
-
-function TaskBlock({ title, time, status }: Task) {
-    const [currentStatus, setCurrentStatus] = useState<string>(status)
-    return <div className="flex justify-between">
-        <div>
-            <h3 className={`font-bold text-lg ${currentStatus === 'DONE' ? 'line-through text-main-1' : 'text-slate-600'}`}>{title}</h3>
-            {/* <p className="text-sm text-slate-400">{moment(time).format('MMMM Do YYYY, h:mm:ss a')}</p> */}
-            <p
-                className={`text-sm text-slate-400 ${((new Date(time) < new Date()) && status === 'IN_PROCESS') && 'text-red-400'}`}
-            >{moment(new Date(time)).fromNow()}</p>
-        </div>
-        <input onChange={(e) => setCurrentStatus(e.target.checked ? 'DONE' : 'IN_PROCESS')} type="checkbox" name="" id="" />
-    </div>
-}
-
+import TaskBlock from "./TaskBlock"
 
 export default function TaskList({ tasks }: { tasks: Task[] }) {
     const lateTasks = tasks.filter(t => (new Date(t.time) < new Date()) && t.status === 'IN_PROCESS')

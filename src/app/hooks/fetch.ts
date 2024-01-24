@@ -29,5 +29,29 @@ export function useFetch(onRequestEnd: (data?: any) => void = () => { }) {
             })
             .finally(() => setLoading(false))
     }
-    return { post, result, loading, error }
+
+    const put = (path: string, payload: FormData | Object): void => {
+        let body
+        if (!(payload instanceof FormData)) {
+            body = JSON.stringify(payload)
+        } else {
+            body = payload
+        }
+
+        setLoading(true)
+        fetch(path, { method: "PUT", body: body })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error)
+                    throw data.error
+                setResult(data)
+                onRequestEnd(data)
+            })
+            .catch(error => {
+                setError(error.toString())
+                setTimeout(()=>setError(undefined), 5000)
+            })
+            .finally(() => setLoading(false))
+    }
+    return { post, put, result, loading, error }
 }

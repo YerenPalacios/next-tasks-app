@@ -55,3 +55,27 @@ export async function getAllTasks(): Promise<{ count: number, tasks: Task[] } | 
             }))
         }
 }
+
+export async function updateTask(id: number, status: string): Promise<Task> {
+    try {
+        const updatedTask = await prisma?.task.update({
+            where: {
+                id: id
+            },
+            data: {
+                status: status
+            }
+        })
+        return {
+            id: updatedTask.id,
+            title: updatedTask.title,
+            time: updatedTask.time.toISOString(),
+            status: updatedTask.status
+        }
+    } catch (error: any) {
+        if (error.code === 'P2025') throw "Task not found"
+        throw error
+    }
+
+
+}
