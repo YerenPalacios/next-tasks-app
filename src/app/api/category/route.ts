@@ -6,10 +6,11 @@ export async function POST(req: NextRequest) {
     const file = data.get('file') as File
     const title = data.get('title') as string
     try {
-        await categoryService.createCategory(title, file)
-    }catch (error){
-        return NextResponse.json({message: error})
+        const category = await categoryService.createCategory(title, file)
+        return NextResponse.json(category, {status: 201})
+    }catch (error: any){
+        return NextResponse.json({message: error.message}, {status: 400})
     }
 
-    return NextResponse.json("creating")
+    
 }

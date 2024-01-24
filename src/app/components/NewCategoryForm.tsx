@@ -1,9 +1,8 @@
 "use client"
-import { ChangeEvent, LegacyRef, useEffect, useRef, useState } from "react"
+import { ChangeEvent, useRef, useState } from "react"
 import FormHeader from "./FormHeader"
 import { useCategoryService } from "../hooks/categoryHooks"
 import Loading from "./loading"
-import { useRouter } from "next/navigation"
 import Image from "next/image"
 
 export default function NewCategoryForm() {
@@ -11,10 +10,9 @@ export default function NewCategoryForm() {
     const [filePreview, setFilePreview] = useState<string>()
     const [file, setFile] = useState<File>()
     const name = useRef<HTMLInputElement | null>(null)
-    const router = useRouter()
 
     const onCreateEnds = () => {
-        router.push("/")
+        window.location.href = "/";
     }
 
     const { sendCategoryData, loading, result } = useCategoryService(onCreateEnds)
